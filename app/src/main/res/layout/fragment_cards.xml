@@ -22,7 +22,6 @@
             android:textColor="@color/blue"
             tools:ignore="TextContrastCheck" />
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cardsList"
             android:layout_width="match_parent"
@@ -47,5 +46,6 @@
             android:text="@string/companies_loading"
             android:textSize="@dimen/text2"
             android:textAlignment="center" />
+
     </LinearLayout>
 </layout>

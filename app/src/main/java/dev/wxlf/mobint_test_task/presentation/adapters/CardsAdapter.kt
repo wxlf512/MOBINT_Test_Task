@@ -1,6 +1,7 @@
 package dev.wxlf.mobint_test_task.presentation.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -13,9 +14,14 @@ class CardsAdapter(private val cards: List<CardEntity>) :
 
     inner class CardViewHolder(private val binding: CardItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(card: CardEntity) {
+        fun bind(card: CardEntity, position: Int) {
             binding.cardinfo = card
             binding.executePendingBindings()
+            if (position == cards.lastIndex) {
+                binding.loading.visibility = View.VISIBLE
+            } else {
+                binding.loading.visibility = View.GONE
+            }
         }
     }
 
@@ -27,7 +33,7 @@ class CardsAdapter(private val cards: List<CardEntity>) :
     }
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) =
-        holder.bind(cards[position])
+        holder.bind(cards[position], position)
 
     override fun getItemCount(): Int = cards.size
 }
