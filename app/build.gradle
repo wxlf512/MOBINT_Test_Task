@@ -62,7 +62,6 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
     def viewModelHiltVersion = "1.0.0"
-    implementation "androidx.hilt:hilt-navigation-compose:$viewModelHiltVersion"
     kapt "androidx.hilt:hilt-compiler:$viewModelHiltVersion"
 
     // Internet

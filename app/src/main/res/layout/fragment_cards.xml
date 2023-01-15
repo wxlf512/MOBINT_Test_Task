@@ -1,40 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:background="@color/lightGrey"
-    tools:context=".presentation.views.CardsFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" >
 
+    <data>
 
-    <TextView
-        android:id="@+id/textView"
+    </data>
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:paddingVertical="@dimen/margin1"
-        android:text="@string/card_management_title"
-        android:textSize="@dimen/text1"
-        android:textAlignment="center"
-        android:textColor="@color/blue"
-        tools:ignore="TextContrastCheck" />
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:background="@color/lightGrey"
+        tools:context=".presentation.views.CardsFragment">
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingVertical="@dimen/margin1"
+            android:text="@string/card_management_title"
+            android:textSize="@dimen/text1"
+            android:textAlignment="center"
+            android:textColor="@color/blue"
+            tools:ignore="TextContrastCheck" />
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="@dimen/sizePreloader"
-        android:layout_height="@dimen/sizePreloader"
-        android:layout_marginTop="@dimen/margin1"
-        android:layout_marginBottom="@dimen/margin2"
-        android:indeterminateTint="@color/black" />
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="@dimen/sizePreloader"
+            android:layout_height="@dimen/sizePreloader"
+            android:layout_marginTop="@dimen/margin1"
+            android:layout_marginBottom="@dimen/margin2"
+            android:indeterminateTint="@color/black" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/companies_loading"
-        android:textSize="@dimen/text2"
-        android:textAlignment="center" />
-</LinearLayout>
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/companies_loading"
+            android:textSize="@dimen/text2"
+            android:textAlignment="center" />
+    </LinearLayout>
+</layout>
