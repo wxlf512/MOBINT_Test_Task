@@ -5,15 +5,15 @@ import dev.wxlf.mobint_test_task.data.entities.CardEntity
 import dev.wxlf.mobint_test_task.domain.BonusMoneyRepository
 
 class BonusMoneyRepositoryImpl(private val remote: BonusMoneyRemoteDataSource) : BonusMoneyRepository {
-    override suspend fun fetchAllCards(): List<CardEntity> =
-        remote.loadAllCards()
+    override suspend fun fetchAllCards(offset: Int): List<CardEntity> =
+        remote.loadAllCards(offset)
 
-    override suspend fun fetchAllCardsIdeal(): List<CardEntity> =
-        remote.loadAllCardsIdeal()
+    override suspend fun fetchAllCardsIdeal(offset: Int): List<CardEntity> =
+        remote.loadAllCardsIdeal(offset)
 
-    override suspend fun fetchAllCardsLong(): List<CardEntity> =
-        remote.loadAllCardsLong()
+    override suspend fun fetchAllCardsLong(offset: Int): List<CardEntity> =
+        remote.loadAllCardsLong(offset)
 
-    override suspend fun fetchAllCardsError(): List<CardEntity> =
-        remote.loadAllCardsError()
+    override suspend fun fetchAllCardsError(offset: Int): List<CardEntity> =
+        remote.loadAllCardsError(offset)
 }

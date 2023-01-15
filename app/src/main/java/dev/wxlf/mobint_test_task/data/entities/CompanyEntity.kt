@@ -5,6 +5,6 @@ import com.google.gson.annotations.SerializedName
 
 data class CompanyEntity (
 
-  @SerializedName("companyId" ) var companyId : String? = null
+  @SerializedName("companyId" ) var companyId : String
 
 )

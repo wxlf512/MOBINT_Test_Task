@@ -4,4 +4,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="card_management_title">Управление картами</string>
     <string name="companies_loading">Подгрузка компаний</string>
+    <string name="company_logo">Company logo</string>
+    <string name="points">баллов</string>
+    <string name="cashback">Кешбэк</string>
+    <string name="level">Уровень</string>
+    <string name="eye_button">Eye button</string>
+    <string name="trash_button">Trash button</string>
+    <string name="more">Подробнее</string>
 </resources>

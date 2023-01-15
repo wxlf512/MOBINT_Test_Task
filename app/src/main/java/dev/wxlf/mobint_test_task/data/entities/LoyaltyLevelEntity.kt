@@ -5,10 +5,10 @@ import com.google.gson.annotations.SerializedName
 
 data class LoyaltyLevelEntity (
 
-  @SerializedName("number"      ) var number      : Int?    = null,
-  @SerializedName("name"        ) var name        : String? = null,
-  @SerializedName("requiredSum" ) var requiredSum : Int?    = null,
-  @SerializedName("markToCash"  ) var markToCash  : Int?    = null,
-  @SerializedName("cashToMark"  ) var cashToMark  : Int?    = null
+  @SerializedName("number"      ) var number      : Int,
+  @SerializedName("name"        ) var name        : String,
+  @SerializedName("requiredSum" ) var requiredSum : Int,
+  @SerializedName("markToCash"  ) var markToCash  : Int,
+  @SerializedName("cashToMark"  ) var cashToMark  : Int
 
 )

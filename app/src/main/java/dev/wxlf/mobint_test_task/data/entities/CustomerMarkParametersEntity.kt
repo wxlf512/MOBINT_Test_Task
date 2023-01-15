@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class CustomerMarkParametersEntity (
 
-  @SerializedName("loyaltyLevel" ) var loyaltyLevel : LoyaltyLevelEntity? = LoyaltyLevelEntity(),
-  @SerializedName("mark"         ) var mark         : Int?          = null
+  @SerializedName("loyaltyLevel" ) var loyaltyLevel : LoyaltyLevelEntity,
+  @SerializedName("mark"         ) var mark         : Int
 
 )

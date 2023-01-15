@@ -4,8 +4,8 @@ import dev.wxlf.mobint_test_task.data.entities.CardEntity
 
 interface BonusMoneyRemoteDataSource {
 
-    suspend fun loadAllCards(): List<CardEntity>
-    suspend fun loadAllCardsIdeal(): List<CardEntity>
-    suspend fun loadAllCardsLong(): List<CardEntity>
-    suspend fun loadAllCardsError(): List<CardEntity>
+    suspend fun loadAllCards(offset: Int): List<CardEntity>
+    suspend fun loadAllCardsIdeal(offset: Int): List<CardEntity>
+    suspend fun loadAllCardsLong(offset: Int): List<CardEntity>
+    suspend fun loadAllCardsError(offset: Int): List<CardEntity>
 }
