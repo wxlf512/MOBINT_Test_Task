@@ -3,14 +3,14 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingVertical="@dimen/margin1" >
 
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
         android:layout_width="@dimen/sizePreloader"
         android:layout_height="@dimen/sizePreloader"
-        android:layout_marginTop="@dimen/margin1"
         android:layout_marginBottom="@dimen/margin2"
         android:indeterminateTint="@color/black" />
 

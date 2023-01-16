@@ -1,5 +1,6 @@
 package dev.wxlf.mobint_test_task.presentation.adapters
 
+import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,7 @@ import dev.wxlf.mobint_test_task.R
 import dev.wxlf.mobint_test_task.data.entities.CardEntity
 import dev.wxlf.mobint_test_task.databinding.CardItemBinding
 
-class CardsAdapter(private val cards: List<CardEntity>) :
+class CardsAdapter(private val cards: List<CardEntity>, var finished: Boolean) :
     RecyclerView.Adapter<CardsAdapter.CardViewHolder>() {
 
     inner class CardViewHolder(private val binding: CardItemBinding) :
@@ -17,10 +18,42 @@ class CardsAdapter(private val cards: List<CardEntity>) :
         fun bind(card: CardEntity, position: Int) {
             binding.cardinfo = card
             binding.executePendingBindings()
-            if (position == cards.lastIndex) {
+
+            if (position == cards.lastIndex && !finished) {
                 binding.loading.visibility = View.VISIBLE
             } else {
                 binding.loading.visibility = View.GONE
+            }
+
+            binding.eyeButton.setOnClickListener {
+                val builder = AlertDialog.Builder(it.context)
+                with(builder)
+                {
+                    setTitle("Клик")
+                    setMessage("Нажата кнопка глаза, ид компании: ${card.company.companyId}")
+                    setPositiveButton("OK", null)
+                    show()
+                }
+            }
+            binding.trashButton.setOnClickListener {
+                val builder = AlertDialog.Builder(it.context)
+                with(builder)
+                {
+                    setTitle("Клик")
+                    setMessage("Нажата кнопка мусорки, ид компании: ${card.company.companyId}")
+                    setPositiveButton("OK", null)
+                    show()
+                }
+            }
+            binding.moreButton.setOnClickListener {
+                val builder = AlertDialog.Builder(it.context)
+                with(builder)
+                {
+                    setTitle("Клик")
+                    setMessage("Нажата кнопка \"Подробнее\", ид компании: ${card.company.companyId}")
+                    setPositiveButton("OK", null)
+                    show()
+                }
             }
         }
     }

@@ -1,6 +1,7 @@
 package dev.wxlf.mobint_test_task.presentation.views
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -27,6 +28,7 @@ class CardsFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val cardsList = mutableListOf<CardEntity>()
+    private var finished = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,24 +42,47 @@ class CardsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.cardsList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        binding.cardsList.adapter = CardsAdapter(cardsList)
+        binding.cardsList.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        binding.cardsList.adapter = CardsAdapter(cardsList, false)
 
         viewModel.uiState.observe(viewLifecycleOwner) { viewState ->
-            when(viewState) {
+            when (viewState) {
                 is CardsViewState.LoadedState -> {
                     cardsList.addAll(viewState.data)
                     (binding.cardsList.adapter as CardsAdapter).notifyDataSetChanged()
+                    (binding.cardsList.adapter as CardsAdapter).finished = viewState.isEnd
+                    finished = viewState.isEnd
                     binding.cardsList.visibility = View.VISIBLE
                     binding.progressBar.visibility = View.GONE
                     binding.loadingText.visibility = View.GONE
                 }
                 is CardsViewState.LoadingState -> {
-                    if(viewState.offset == 0) {
+                    if (viewState.offset == 0) {
                         binding.cardsList.visibility = View.GONE
                     }
                     binding.progressBar.visibility = View.VISIBLE
                     binding.loadingText.visibility = View.VISIBLE
+                }
+                is CardsViewState.ErrorState -> {
+                    val builder = AlertDialog.Builder(context)
+                    with(builder)
+                    {
+                        setTitle("Ошибка")
+                        when (viewState.statusCode) {
+                            401 -> {
+                                setMessage("Ошибка авторизации")
+                            }
+                            400 -> {
+                                setMessage(viewState.message)
+                            }
+                            500 -> {
+                                setMessage("Всё упало")
+                            }
+                        }
+                        setPositiveButton("OK", null)
+                        show()
+                    }
                 }
             }
         }
@@ -65,12 +90,14 @@ class CardsFragment : Fragment() {
         binding.cardsList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
-                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
-                val adapter = recyclerView.adapter as CardsAdapter
-                val position = layoutManager.findLastCompletelyVisibleItemPosition()
+                if(!finished) {
+                    val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                    val adapter = recyclerView.adapter as CardsAdapter
+                    val position = layoutManager.findLastCompletelyVisibleItemPosition()
 
-                if(position >= adapter.itemCount - 2)
-                    viewModel.obtainEvent(CardsEvent.LoadCardsEvent(adapter.itemCount))
+                    if (position >= adapter.itemCount - 2)
+                        viewModel.obtainEvent(CardsEvent.LoadCardsEvent(adapter.itemCount))
+                }
             }
         })
     }
